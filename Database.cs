@@ -121,7 +121,56 @@ namespace Students
             finally { SQLiteConnection.Close(); }
         }
 
-        public void InsertRowToDBUseBtn(DataGridView dGV, string subjName, int year) // Предметы
+        public void InsertRowToDBUseBtn(DataGridView dGV, string groupName, int year, string Name) // Студент
+        {
+            string query = "";
+
+            if (!CheckRecordExistGroup(groupName, year.ToString())) // Проверка существования группы
+            {
+                try // добавление записи Группы
+                {
+                    query = "INSERT INTO \"Group\" (GroupName, Year) " +
+                             $"SELECT '{groupName}', '{year}';";
+
+
+                    SQLiteConnection.Open();
+                    command = new SQLiteCommand();
+                    command.Connection = SQLiteConnection;
+                    command.CommandText = query;
+
+                    command.ExecuteNonQuery();
+                }
+                catch (SQLiteException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+                finally { SQLiteConnection.Close(); }
+            }
+
+            try // добавление записи Студента
+            {
+                query = "INSERT INTO \"Student\" (Name, GroupId) " +
+                         $"SELECT '{Name}', GroupId " +
+                         "FROM \"Group\" " +
+                         $"WHERE GroupName = '{groupName}' AND Year = '{year}';";
+
+
+                SQLiteConnection.Open();
+                command = new SQLiteCommand();
+                command.Connection = SQLiteConnection;
+                command.CommandText = query;
+
+                command.ExecuteNonQuery();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally { SQLiteConnection.Close(); }
+
+        }
+
+        public void InsertRowToDBUseBtn(DataGridView dGV, string subjName, int year) // Дисциплина
         {
             string query = "";
             try
@@ -196,7 +245,7 @@ namespace Students
                             $"WHERE {groupName} AND {year});";
 
             }
-            else if (choiceVal == 2) // Предметы
+            else if (choiceVal == 2) // Дисциплина
             {
                 string subjectName = $"SubjectName = '{dGV.Rows[rowInd].Cells[0].Value.ToString()}'";
                 string year = $"Year = '{dGV.Rows[rowInd].Cells[1].Value.ToString()}'";
@@ -341,37 +390,37 @@ namespace Students
                                     "WHERE t1.GroupId = t2.GroupId " +
                                     "ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC;";
                 }
-                else if (choiceVal == 2) // Предметы
+                else if (choiceVal == 2) // Дисциплина
                 {
-                    query = "SELECT SubjectName as 'Предмет', Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
+                    query = "SELECT SubjectName as 'Дисциплина', Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
                                 "FROM \"Subject\" " +
-                                "ORDER BY [Год] DESC, [Предмет] ASC;";
+                                "ORDER BY [Год] DESC, [Дисциплина] ASC;";
                 }
                 else if (choiceVal == 3) // Работы
                 {
-                    query = "SELECT t1.WorkName as 'Работа', t2.SubjectName as 'Предмет', t2.Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
+                    query = "SELECT t1.WorkName as 'Работа', t2.SubjectName as 'Дисциплина', t2.Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
                                 "FROM \"Work\" as 't1', \"Subject\" as 't2' " +
                                 "WHERE t1.SubjectId = t2.SubjectId " +
-                                "ORDER BY [Год] DESC, [Предмет] ASC, [Работа] ASC;";
+                                "ORDER BY [Год] DESC, [Дисциплина] ASC, [Работа] ASC;";
                 }
                 else if (choiceVal == 4) // Оценки
                 {
 
                     query = "DROP TABLE IF EXISTS \"table_not_emp_val\"; " +
                             "CREATE TABLE \"table_not_emp_val\" as " +
-                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Предмет', t4.WorkName as 'Работа', t1.Year as 'Год', t5.Value as 'Оценка' " +
+                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Дисциплина', t4.WorkName as 'Работа', t1.Year as 'Год', t5.Value as 'Оценка' " +
                             "FROM \"Group\" as 't1', \"Student\" as 't2', \"Subject\" as 't3', \"Work\" as 't4', \"Grade\" as 't5' " +
                             "WHERE t1.GroupId = t2.GroupId AND t3.SubjectId = t4.SubjectId AND t1.Year = t3.Year AND t5.StudentId = t2.StudentId AND t5.WorkId = t4.WorkId; " +
 
                             "DROP TABLE IF EXISTS \"table_emp_val\"; " +
                             "CREATE TABLE \"table_emp_val\" as " +
-                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Предмет', t4.WorkName as 'Работа', t1.Year as 'Год', NULL as 'Оценка' " +
+                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Дисциплина', t4.WorkName as 'Работа', t1.Year as 'Год', NULL as 'Оценка' " +
                             "FROM \"Group\" as 't1', \"Student\" as 't2', \"Subject\" as 't3', \"Work\" as 't4' " +
                             "WHERE t1.GroupId = t2.GroupId AND t3.SubjectId = t4.SubjectId AND t1.Year = t3.Year; " +
 
                             "DELETE FROM \"table_emp_val\" as 't1' " +
-                            "WHERE(t1.[Группа], t1.[ФИО], t1.[Предмет], t1.[Работа], t1.[Год]) IN( " +
-                            "SELECT t2.[Группа], t2.[ФИО], t2.[Предмет], t2.[Работа], t2.[Год] " +
+                            "WHERE(t1.[Группа], t1.[ФИО], t1.[Дисциплина], t1.[Работа], t1.[Год]) IN( " +
+                            "SELECT t2.[Группа], t2.[ФИО], t2.[Дисциплина], t2.[Работа], t2.[Год] " +
 
                             "FROM \"table_not_emp_val\" as 't2'); " +
 
@@ -382,7 +431,7 @@ namespace Students
                             "SELECT * FROM \"table_emp_val\"; " +
 
                             $"SELECT * FROM \"All_Marks\" " +
-                            $"ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC, [Предмет] ASC, [Работа] ASC;";
+                            $"ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC, [Дисциплина] ASC, [Работа] ASC;";
                 }
                 else
                 {
@@ -477,36 +526,36 @@ namespace Students
                                     $"WHERE t1.GroupId = t2.GroupId{condition} " +
                                     $"ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC;";
                 }
-                else if (choiceVal == 2) // Предметы
+                else if (choiceVal == 2) // Дисциплина
                 {
-                    query = "SELECT SubjectName as 'Предмет', Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
+                    query = "SELECT SubjectName as 'Дисциплина', Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
                                 $"FROM \"Subject\"{condition} " +
-                                $"ORDER BY [Год] DESC, [Предмет] ASC;";
+                                $"ORDER BY [Год] DESC, [Дисциплина] ASC;";
                 }
                 else if (choiceVal == 3) // Работы
                 {
-                    query = "SELECT t1.WorkName as 'Работа', t2.SubjectName as 'Предмет', t2.Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
+                    query = "SELECT t1.WorkName as 'Работа', t2.SubjectName as 'Дисциплина', t2.Year as 'Год', \"\" as 'Редактирование', \"\" as 'Удаление' " +
                                 "FROM \"Work\" as 't1', \"Subject\" as 't2' " +
                                 $"WHERE t1.SubjectId = t2.SubjectId{condition} " +
-                                $"ORDER BY [Год] DESC, [Предмет] ASC, [Работа] ASC;";
+                                $"ORDER BY [Год] DESC, [Дисциплина] ASC, [Работа] ASC;";
                 }
                 else if (choiceVal == 4) // Оценки
                 {
                     query = "DROP TABLE IF EXISTS \"table_not_emp_val\"; " +
                             "CREATE TABLE \"table_not_emp_val\" as " +
-                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Предмет', t4.WorkName as 'Работа', t1.Year as 'Год', t5.Value as 'Оценка' " +
+                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Дисциплина', t4.WorkName as 'Работа', t1.Year as 'Год', t5.Value as 'Оценка' " +
                             "FROM \"Group\" as 't1', \"Student\" as 't2', \"Subject\" as 't3', \"Work\" as 't4', \"Grade\" as 't5' " +
                             "WHERE t1.GroupId = t2.GroupId AND t3.SubjectId = t4.SubjectId AND t1.Year = t3.Year AND t5.StudentId = t2.StudentId AND t5.WorkId = t4.WorkId; " +
 
                             "DROP TABLE IF EXISTS \"table_emp_val\"; " +
                             "CREATE TABLE \"table_emp_val\" as " +
-                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Предмет', t4.WorkName as 'Работа', t1.Year as 'Год', NULL as 'Оценка' " +
+                            "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Дисциплина', t4.WorkName as 'Работа', t1.Year as 'Год', NULL as 'Оценка' " +
                             "FROM \"Group\" as 't1', \"Student\" as 't2', \"Subject\" as 't3', \"Work\" as 't4' " +
                             "WHERE t1.GroupId = t2.GroupId AND t3.SubjectId = t4.SubjectId AND t1.Year = t3.Year; " +
 
                             "DELETE FROM \"table_emp_val\" as 't1' " +
-                            "WHERE(t1.[Группа], t1.[ФИО], t1.[Предмет], t1.[Работа], t1.[Год]) IN( " +
-                            "SELECT t2.[Группа], t2.[ФИО], t2.[Предмет], t2.[Работа], t2.[Год] " +
+                            "WHERE(t1.[Группа], t1.[ФИО], t1.[Дисциплина], t1.[Работа], t1.[Год]) IN( " +
+                            "SELECT t2.[Группа], t2.[ФИО], t2.[Дисциплина], t2.[Работа], t2.[Год] " +
 
                             "FROM \"table_not_emp_val\" as 't2'); " +
 
@@ -517,7 +566,7 @@ namespace Students
                             $"SELECT * FROM \"table_emp_val\"{condition}; " +
 
                             $"SELECT * FROM \"All_Marks\" " +
-                            $"ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC, [Предмет] ASC, [Работа] ASC;";
+                            $"ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC, [Дисциплина] ASC, [Работа] ASC;";
                 }
                 else
                 {
@@ -598,38 +647,39 @@ namespace Students
                 // Запрос на получение всех Оценок
                 query = "DROP TABLE IF EXISTS \"table_not_emp_val\"; " +
                         "CREATE TABLE \"table_not_emp_val\" as " +
-                        "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Предмет', t4.WorkName as 'Работа', t1.Year as 'Год', t5.Value as 'Оценка' " +
+                        "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Дисциплина', t4.WorkName as 'Работа', t1.Year as 'Год', t5.Value as 'Оценка' " +
                         "FROM \"Group\" as 't1', \"Student\" as 't2', \"Subject\" as 't3', \"Work\" as 't4', \"Grade\" as 't5' " +
                         "WHERE t1.GroupId = t2.GroupId AND t3.SubjectId = t4.SubjectId AND t1.Year = t3.Year AND t5.StudentId = t2.StudentId AND t5.WorkId = t4.WorkId; " +
 
                         "DROP TABLE IF EXISTS \"table_emp_val\"; " +
                         "CREATE TABLE \"table_emp_val\" as " +
-                        "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Предмет', t4.WorkName as 'Работа', t1.Year as 'Год', NULL as 'Оценка' " +
+                        "SELECT t1.GroupName as 'Группа', t2.Name as 'ФИО', t3.SubjectName as 'Дисциплина', t4.WorkName as 'Работа', t1.Year as 'Год', NULL as 'Оценка' " +
                         "FROM \"Group\" as 't1', \"Student\" as 't2', \"Subject\" as 't3', \"Work\" as 't4' " +
                         "WHERE t1.GroupId = t2.GroupId AND t3.SubjectId = t4.SubjectId AND t1.Year = t3.Year; " +
 
                         "DELETE FROM \"table_emp_val\" as 't1' " +
-                        "WHERE(t1.[Группа], t1.[ФИО], t1.[Предмет], t1.[Работа], t1.[Год]) IN( " +
-                        "SELECT t2.[Группа], t2.[ФИО], t2.[Предмет], t2.[Работа], t2.[Год] " +
+                        "WHERE(t1.[Группа], t1.[ФИО], t1.[Дисциплина], t1.[Работа], t1.[Год]) IN( " +
+                        "SELECT t2.[Группа], t2.[ФИО], t2.[Дисциплина], t2.[Работа], t2.[Год] " +
 
                         "FROM \"table_not_emp_val\" as 't2'); " +
 
                         "DROP TABLE IF EXISTS \"All_Marks\"; " +
                         "CREATE TABLE \"All_Marks\" as " +
-                        $"SELECT * FROM \"table_not_emp_val\" WHERE [Группа] = '{group}' AND [Год] = '{year}' AND [Предмет] = '{subject}' " +
+                        $"SELECT * FROM \"table_not_emp_val\" WHERE [Группа] = '{group}' AND [Год] = '{year}' AND [Дисциплина] = '{subject}' " +
                         "UNION ALL " +
-                        $"SELECT * FROM \"table_emp_val\" WHERE [Группа] = '{group}' AND [Год] = '{year}' AND [Предмет] = '{subject}'; " +
+                        $"SELECT * FROM \"table_emp_val\" WHERE [Группа] = '{group}' AND [Год] = '{year}' AND [Дисциплина] = '{subject}'; " +
 
                         $"SELECT * FROM \"All_Marks\" " +
-                        $"ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC, [Предмет] ASC, [Работа] ASC;";
+                        $"ORDER BY [Год] DESC, [Группа] ASC, [ФИО] ASC, [Дисциплина] ASC, [Работа] ASC;";
 
-                // Запрос на название ЛР которые есть у данной группы в этом году по этому предмету
+                // Запрос на название ЛР которые есть у данной группы в этом году по этому Дисциплинау
                 string query1 = "SELECT t1.WorkName " +
                     "FROM \"Work\" as 't1' " +
                     "WHERE t1.SubjectId = (" +
                             $"SELECT t2.SubjectId " +
                             $"FROM \"Subject\" as 't2' " +
-                            $"WHERE t2.SubjectName = '{subject}' AND t2.Year = '{year}');";
+                            $"WHERE t2.SubjectName = '{subject}' AND t2.Year = '{year}') " +
+                    "ORDER BY t1.WorkName ASC;";
 
                 // Заполняем все оценки
                 adapter = new SQLiteDataAdapter(query, SQLiteConnection);
@@ -645,6 +695,12 @@ namespace Students
                 // Работа с колонками
                 dGV.Columns.Clear();
 
+                if (dataTableWork.Rows.Count <= 0) // Возвращаемся если колонок нету для добавления
+                {
+                    MessageBox.Show("Нету работ в дисциплине", "Таблица не выведенна", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 // Заполняем колонки
                 for (int i = 0, col = 0; col < dataTableWork.Rows.Count; i++)
                 {
@@ -657,7 +713,7 @@ namespace Students
                             mainCol.HeaderText = dataTable.Columns[i].ColumnName;
                         if (i == 2 || i == 3)
                         {
-                            mainCol.Visible = true; // Видимость столбцов [Предмета и Года]
+                            mainCol.Visible = true; // Видимость столбцов [Дисциплинаа и Года]
                             dGV.Columns.Add(mainCol);
                             dGV.Columns[i].ReadOnly = true;
                         }
@@ -691,7 +747,7 @@ namespace Students
                     DataGridViewRow row = (DataGridViewRow)dGV.Rows[0].Clone(); // Клонируем строку
                     row.Cells[0].Value = dataTable.Rows[j].ItemArray[0].ToString(); // 1-й элемент строки [Группа]
                     row.Cells[1].Value = dataTable.Rows[j].ItemArray[1].ToString(); // 2-й элемент строки [ФИО]
-                    row.Cells[2].Value = dataTable.Rows[j].ItemArray[2].ToString(); // 3-й элемент строки [Предмет] [Visible = false]
+                    row.Cells[2].Value = dataTable.Rows[j].ItemArray[2].ToString(); // 3-й элемент строки [Дисциплина] [Visible = false]
                     row.Cells[3].Value = dataTable.Rows[j].ItemArray[4].ToString(); // Последний элемент строки [Год] [Visible = false]
                     for (int r = 0; r < dataTableWork.Rows.Count; r++) // Добавление остальных элементов строки [Работа-Оценка]
                     {
@@ -992,7 +1048,7 @@ namespace Students
             string query = "";
             string query_check = "SELECT COUNT(*) " +
                                     "FROM \"table_not_emp_val\" as 't1' " +
-                                    $"WHERE t1.[Группа] = '{group}' AND t1.[ФИО] = '{fio}' AND t1.[Предмет] = '{subj}' AND t1.[Работа] = '{work}';";
+                                    $"WHERE t1.[Группа] = '{group}' AND t1.[ФИО] = '{fio}' AND t1.[Дисциплина] = '{subj}' AND t1.[Работа] = '{work}';";
             object res = null;
 
             try

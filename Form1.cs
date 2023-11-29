@@ -46,7 +46,7 @@ namespace Students
         #region [Загрузка Exel]
         private void LoadExelClick(object sender, EventArgs e) // Нажатие на кнопку загрузки Exel
         {
-            
+
             OpenFileDialog openFileDialog = new OpenFileDialog(); // Открытие диалога
             openFileDialog.Filter = "Файлы Exel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*";
             openFileDialog.Title = "Выберите файл Excel для открытия";
@@ -127,7 +127,7 @@ namespace Students
                 UpdateGroup();
                 UpdateFIO();
             }
-            else if (cmBTableChoice.SelectedIndex == 2) // Предметы
+            else if (cmBTableChoice.SelectedIndex == 2) // Дисциплина
             {
                 cmBYear1.Enabled = true;
                 cmBGroup1.Enabled = false;
@@ -217,14 +217,14 @@ namespace Students
             System.Data.DataTable dataTable = new System.Data.DataTable();
             dataTable = database.GetSubject();
             cmBSubj1.Items.Clear();
-            cmBSubj2.Items.Clear();
+            //cmBSubj2.Items.Clear();
 
             cmBSubj1.Items.Add("");
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 cmBSubj1.Items.Add(dataTable.Rows[i].ItemArray[0]);
-                cmBSubj2.Items.Add(dataTable.Rows[i].ItemArray[0]);
+                //cmBSubj2.Items.Add(dataTable.Rows[i].ItemArray[0]);
             }
         }
 
@@ -234,16 +234,16 @@ namespace Students
             dataTable = database.GetYear();
 
             cmBYear1.Items.Clear();
-            cmBYear2.Items.Clear();
-            cmBYear3.Items.Clear();
+            //cmBYear2.Items.Clear();
+            //cmBYear3.Items.Clear();
 
             cmBYear1.Items.Add("");
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 cmBYear1.Items.Add(dataTable.Rows[i].ItemArray[0]);
-                cmBYear2.Items.Add(dataTable.Rows[i].ItemArray[0]);
-                cmBYear3.Items.Add(dataTable.Rows[i].ItemArray[0]);
+                //cmBYear2.Items.Add(dataTable.Rows[i].ItemArray[0]);
+                //cmBYear3.Items.Add(dataTable.Rows[i].ItemArray[0]);
             }
         }
 
@@ -265,60 +265,26 @@ namespace Students
         #endregion
 
         #region [Обработка нажатий кнопок]
-        private void btnAddRow_Subj_Click(object sender, EventArgs e) // Предметы
+
+        private void btnAddRow_Student_Click(object sender, EventArgs e) // Студенты
         {
-            if (sender == btnAddRow_Subj && cmBTableChoice.Visible == true)
-            {
-                if (tBSubjName.Text != "" && cmBYear2.Text != "")
-                {
-                    if (database.CheckRecordExistSubj(tBSubjName.Text, cmBYear2.Text) == false)
-                    {
-                        database.InsertRowToDBUseBtn(mainDGV, tBSubjName.Text, Convert.ToInt32(cmBYear2.Text));
+            Form_Add_Student form_Add_Student = new Form_Add_Student(database, mainDGV, cmBTableChoice);
+            form_Add_Student.ShowDialog();
+            UpdateFIO();
+        }
 
-                        if (cmBTableChoice.SelectedIndex == 2)
-                            database.ShowTable(mainDGV, 2);
-                        else
-                            cmBTableChoice.SelectedIndex = 2;
-
-                        UpdateSubj();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Данная запись уже существует!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Поле не может быть путым", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
+        private void btnAddRow_Subj_Click(object sender, EventArgs e) // Дисциплина
+        {
+            Form_Add_Subject form_Add_Subject = new Form_Add_Subject(database, mainDGV, cmBTableChoice);
+            form_Add_Subject.ShowDialog();
+            UpdateSubj();
         }
 
         private void btnAddRow_Work_Click(object sender, EventArgs e) // Работы
         {
-            if (sender == btnAddRow_Work && cmBTableChoice.Enabled == true)
-            {
-                if (cmBSubj2.Text != "" && tBWorkName.Text != "" && cmBYear3.Text != "")
-                {
-                    if (database.CheckRecordExistWork(cmBSubj2.Text, cmBYear3.Text, tBWorkName.Text) == false)
-                    {
-                        database.InsertRowToDBUseBtn(mainDGV, cmBSubj2.Text, tBWorkName.Text, Convert.ToInt32(cmBYear3.Text));
-
-                        if (cmBTableChoice.SelectedIndex == 3)
-                            database.ShowTable(mainDGV, 3);
-                        else
-                            cmBTableChoice.SelectedIndex = 3;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Данная запись уже существует!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Поля не могут быть путыми", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
+            Form_Add_Work form_Add_Work = new Form_Add_Work(database, mainDGV, cmBTableChoice);
+            form_Add_Work.ShowDialog();
+            UpdateWork();
         }
 
         private void btnUseFiltrs_Click(object sender, EventArgs e) // Фильтр
@@ -392,7 +358,7 @@ namespace Students
                     database.ShowTable(mainDGV, 1, addQuery);
                 }
             }
-            // Предмет
+            // Дисциплина
             else if (cmBTableChoice.SelectedIndex == 2)
             {
                 if (cmBSubj1.SelectedIndex == -1 && cmBYear1.SelectedIndex == -1)
@@ -491,7 +457,7 @@ namespace Students
                         if (cmBFIO1.Text != "")
                             fio = $"[ФИО] = '{cmBFIO1.Text}'";
                         if (cmBSubj1.Text != "")
-                            subject = $"[Предмет] = '{cmBSubj1.Text}'";
+                            subject = $"[Дисциплина] = '{cmBSubj1.Text}'";
                         if (cmBYear1.Text != "")
                             year = $"[Год] = '{cmBYear1.Text}'";
                         if (cmBWork1.Text != "")
@@ -604,7 +570,7 @@ namespace Students
             if (mainDGV.Columns[e.ColumnIndex].HeaderText == "Год" ||
                 mainDGV.Columns[e.ColumnIndex].HeaderText == "Группа" ||
                 mainDGV.Columns[e.ColumnIndex].HeaderText == "ФИО" ||
-                mainDGV.Columns[e.ColumnIndex].HeaderText == "Предмет" ||
+                mainDGV.Columns[e.ColumnIndex].HeaderText == "Дисциплина" ||
                 mainDGV.Columns[e.ColumnIndex].HeaderText == "Работа")
                 return;
 
@@ -627,7 +593,7 @@ namespace Students
                         group = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
                     if (column.HeaderText == "ФИО")
                         fio = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
-                    if (column.HeaderText == "Предмет")
+                    if (column.HeaderText == "Дисциплина")
                         subj = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
                     if (column.HeaderText == "Работа")
                         work = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
@@ -651,7 +617,7 @@ namespace Students
                         group = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
                     if (column.HeaderText == "ФИО")
                         fio = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
-                    if (column.HeaderText == "Предмет")
+                    if (column.HeaderText == "Дисциплина")
                         subj = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
                     if (column.HeaderText == "Год")
                         year = $"{mainDGV.Rows[e.RowIndex].Cells[ind].Value}";
@@ -659,7 +625,7 @@ namespace Students
                     // Ищем название предмета
                     if (column.HeaderText != "Группа" &&
                         column.HeaderText != "ФИО" &&
-                        column.HeaderText != "Предмет" &&
+                        column.HeaderText != "Дисциплина" &&
                         column.HeaderText != "Год" &&
                         column.Index == e.ColumnIndex) // Дополнительная проверка на нужный столбец
                     {
@@ -685,6 +651,7 @@ namespace Students
                 else
                 {
                     System.Data.DataTable dataTable = new System.Data.DataTable();
+
                     // Обновление для Групп
                     string query = $" WHERE Year = '{cmBYear1.Text}'";
                     dataTable = database.GetGroup_cmB(query);
@@ -694,7 +661,8 @@ namespace Students
                     {
                         cmBGroup1.Items.Add(dataTable.Rows[i].ItemArray[0]);
                     }
-                    // Обновление для Предметов
+
+                    // Обновление для Дисциплин
                     query = $" WHERE Year = '{cmBYear1.Text}'";
                     dataTable = database.GetSubject_cmB(query);
                     cmBSubj1.Items.Clear();
@@ -776,30 +744,30 @@ namespace Students
             }
         }
 
-        private void cmBYear3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmBYear3.SelectedIndex != -1)
-            {
-                if (cmBYear3.SelectedIndex == 0)
-                {
-                    UpdateSubj();
-                }
-                else
-                {
-                    System.Data.DataTable dataTable = new System.Data.DataTable();
+        //private void cmBYear3_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (cmBYear3.SelectedIndex != -1)
+        //    {
+        //        if (cmBYear3.SelectedIndex == 0)
+        //        {
+        //            UpdateSubj();
+        //        }
+        //        else
+        //        {
+        //            System.Data.DataTable dataTable = new System.Data.DataTable();
 
-                    // Обновление для Предметов
-                    string query = $" WHERE Year = '{cmBYear3.Text}'";
-                    dataTable = database.GetSubject_cmB(query);
-                    cmBSubj2.Items.Clear();
-                    cmBSubj2.Items.Add("");
-                    for (int i = 0; i < dataTable.Rows.Count; i++)
-                    {
-                        cmBSubj2.Items.Add(dataTable.Rows[i].ItemArray[0]);
-                    }
-                }
-            }
-        }
+        //            // Обновление для Предметов
+        //            string query = $" WHERE Year = '{cmBYear3.Text}'";
+        //            dataTable = database.GetSubject_cmB(query);
+        //            cmBSubj2.Items.Clear();
+        //            cmBSubj2.Items.Add("");
+        //            for (int i = 0; i < dataTable.Rows.Count; i++)
+        //            {
+        //                cmBSubj2.Items.Add(dataTable.Rows[i].ItemArray[0]);
+        //            }
+        //        }
+        //    }
+        //}
 
         private bool CheckExel(ExcelWorksheet list) // Проверка Exel файла
         {
@@ -943,6 +911,6 @@ namespace Students
             }
         }
 
-       
+
     }
 }

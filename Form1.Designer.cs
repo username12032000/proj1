@@ -30,22 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnSaveToExel = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cmBYear3 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cmBSubj2 = new System.Windows.Forms.ComboBox();
-            this.tBWorkName = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnAddRow_Work = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmBYear2 = new System.Windows.Forms.ComboBox();
-            this.tBSubjName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnAddRow_Subj = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancelFilters = new System.Windows.Forms.Button();
             this.btnUseFiltrs = new System.Windows.Forms.Button();
@@ -63,16 +47,26 @@
             this.loadExelBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.mainDGV = new System.Windows.Forms.DataGridView();
-            this.btnHelp = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDGV)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -80,14 +74,11 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox4);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1MinSize = 350;
             // 
@@ -95,167 +86,9 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.mainDGV);
             this.splitContainer1.Panel2MinSize = 600;
-            this.splitContainer1.Size = new System.Drawing.Size(1008, 546);
+            this.splitContainer1.Size = new System.Drawing.Size(1008, 262);
             this.splitContainer1.SplitterDistance = 350;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnHelp);
-            this.groupBox4.Controls.Add(this.btnSaveToExel);
-            this.groupBox4.Location = new System.Drawing.Point(12, 475);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(335, 65);
-            this.groupBox4.TabIndex = 5;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Сохранение данных";
-            // 
-            // btnSaveToExel
-            // 
-            this.btnSaveToExel.Location = new System.Drawing.Point(9, 19);
-            this.btnSaveToExel.Name = "btnSaveToExel";
-            this.btnSaveToExel.Size = new System.Drawing.Size(150, 35);
-            this.btnSaveToExel.TabIndex = 0;
-            this.btnSaveToExel.Text = "Сохранить в Exel выведенные данные";
-            this.btnSaveToExel.UseVisualStyleBackColor = true;
-            this.btnSaveToExel.Click += new System.EventHandler(this.btnSaveToExel_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.cmBYear3);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.cmBSubj2);
-            this.groupBox3.Controls.Add(this.tBWorkName);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.btnAddRow_Work);
-            this.groupBox3.Location = new System.Drawing.Point(12, 364);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(335, 105);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Добавление записей ЛР";
-            // 
-            // cmBYear3
-            // 
-            this.cmBYear3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmBYear3.FormattingEnabled = true;
-            this.cmBYear3.Location = new System.Drawing.Point(168, 33);
-            this.cmBYear3.Name = "cmBYear3";
-            this.cmBYear3.Size = new System.Drawing.Size(150, 21);
-            this.cmBYear3.TabIndex = 15;
-            this.cmBYear3.SelectedIndexChanged += new System.EventHandler(this.cmBYear3_SelectedIndexChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(163, 17);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Год";
-            // 
-            // cmBSubj2
-            // 
-            this.cmBSubj2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmBSubj2.FormattingEnabled = true;
-            this.cmBSubj2.Location = new System.Drawing.Point(168, 72);
-            this.cmBSubj2.Name = "cmBSubj2";
-            this.cmBSubj2.Size = new System.Drawing.Size(150, 21);
-            this.cmBSubj2.TabIndex = 13;
-            // 
-            // tBWorkName
-            // 
-            this.tBWorkName.Location = new System.Drawing.Point(9, 73);
-            this.tBWorkName.Name = "tBWorkName";
-            this.tBWorkName.Size = new System.Drawing.Size(150, 20);
-            this.tBWorkName.TabIndex = 9;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 57);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(97, 13);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "Название работы";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(163, 56);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Предмет";
-            // 
-            // btnAddRow_Work
-            // 
-            this.btnAddRow_Work.Location = new System.Drawing.Point(8, 19);
-            this.btnAddRow_Work.Name = "btnAddRow_Work";
-            this.btnAddRow_Work.Size = new System.Drawing.Size(150, 35);
-            this.btnAddRow_Work.TabIndex = 7;
-            this.btnAddRow_Work.Text = "Добавить запись работы";
-            this.btnAddRow_Work.UseVisualStyleBackColor = true;
-            this.btnAddRow_Work.Click += new System.EventHandler(this.btnAddRow_Work_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.cmBYear2);
-            this.groupBox2.Controls.Add(this.tBSubjName);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.btnAddRow_Subj);
-            this.groupBox2.Location = new System.Drawing.Point(12, 253);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(335, 105);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Добавление запись предмета";
-            // 
-            // cmBYear2
-            // 
-            this.cmBYear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmBYear2.FormattingEnabled = true;
-            this.cmBYear2.Location = new System.Drawing.Point(167, 33);
-            this.cmBYear2.Name = "cmBYear2";
-            this.cmBYear2.Size = new System.Drawing.Size(150, 21);
-            this.cmBYear2.TabIndex = 16;
-            // 
-            // tBSubjName
-            // 
-            this.tBSubjName.Location = new System.Drawing.Point(9, 73);
-            this.tBSubjName.Name = "tBSubjName";
-            this.tBSubjName.Size = new System.Drawing.Size(150, 20);
-            this.tBSubjName.TabIndex = 6;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 57);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Название предмета";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(164, 17);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 13);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Год";
-            // 
-            // btnAddRow_Subj
-            // 
-            this.btnAddRow_Subj.Location = new System.Drawing.Point(8, 19);
-            this.btnAddRow_Subj.Name = "btnAddRow_Subj";
-            this.btnAddRow_Subj.Size = new System.Drawing.Size(150, 35);
-            this.btnAddRow_Subj.TabIndex = 1;
-            this.btnAddRow_Subj.Text = "Добавить запись предмета";
-            this.btnAddRow_Subj.UseVisualStyleBackColor = true;
-            this.btnAddRow_Subj.Click += new System.EventHandler(this.btnAddRow_Subj_Click);
             // 
             // groupBox1
             // 
@@ -387,7 +220,7 @@
             this.cmBTableChoice.Items.AddRange(new object[] {
             "Группы",
             "Студенты",
-            "Предметы",
+            "Дисциплины",
             "Работы",
             "Оценки"});
             this.cmBTableChoice.Location = new System.Drawing.Point(168, 32);
@@ -427,7 +260,7 @@
             this.loadExelBtn.Name = "loadExelBtn";
             this.loadExelBtn.Size = new System.Drawing.Size(150, 35);
             this.loadExelBtn.TabIndex = 0;
-            this.loadExelBtn.Text = "Загрузить Exel";
+            this.loadExelBtn.Text = "Загрузить Exсel";
             this.loadExelBtn.UseVisualStyleBackColor = true;
             this.loadExelBtn.Click += new System.EventHandler(this.LoadExelClick);
             // 
@@ -436,9 +269,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 139);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Предмет";
+            this.label3.Text = "Дисциплина";
             // 
             // mainDGV
             // 
@@ -448,53 +281,142 @@
             this.mainDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainDGV.Location = new System.Drawing.Point(0, 0);
             this.mainDGV.Name = "mainDGV";
-            this.mainDGV.Size = new System.Drawing.Size(654, 546);
+            this.mainDGV.Size = new System.Drawing.Size(654, 262);
             this.mainDGV.TabIndex = 0;
             this.mainDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainDGV_CellContentClick);
             this.mainDGV.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainDGV_CellValueChanged);
             // 
-            // btnHelp
+            // menuStrip1
             // 
-            this.btnHelp.Location = new System.Drawing.Point(168, 19);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(150, 35);
-            this.btnHelp.TabIndex = 1;
-            this.btnHelp.Text = "Помощь";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem6,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem7});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem8,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem9});
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(63, 20);
+            this.toolStripMenuItem6.Text = "Главная";
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(172, 22);
+            this.toolStripMenuItem8.Text = "Загрузить Excel";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.LoadExelClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(172, 22);
+            this.toolStripMenuItem9.Text = "Сохранить в Excel";
+            this.toolStripMenuItem9.Click += new System.EventHandler(this.btnSaveToExel_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(86, 20);
+            this.toolStripMenuItem1.Text = "Добавление";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(198, 22);
+            this.toolStripMenuItem3.Text = "Добавить Студента";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.btnAddRow_Student_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(198, 22);
+            this.toolStripMenuItem4.Text = "Добавить Дисциплину";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.btnAddRow_Subj_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(198, 22);
+            this.toolStripMenuItem5.Text = "Добавить Работу";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.btnAddRow_Work_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.помощьToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.toolStripMenuItem10});
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(94, 20);
+            this.toolStripMenuItem7.Text = "О программе";
+            // 
+            // помощьToolStripMenuItem
+            // 
+            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.помощьToolStripMenuItem.Text = "Помощь";
+            this.помощьToolStripMenuItem.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem10.Text = "Версия: 1.0.1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1008, 546);
+            this.ClientSize = new System.Drawing.Size(1008, 286);
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(640, 585);
+            this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(640, 325);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Учет успиваемости студентов ВУЗа СГУГиТ 2023";
+            this.Text = "Учет успеваемости студентов ВУЗа СГУГиТ 2023";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDGV)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button loadExelBtn;
         private System.Windows.Forms.DataGridView mainDGV;
         private System.Windows.Forms.ComboBox cmBTableChoice;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -507,27 +429,24 @@
         private System.Windows.Forms.ComboBox cmBYear1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmBFIO1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnAddRow_Subj;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tBSubjName;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox cmBSubj2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tBWorkName;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button btnAddRow_Work;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmBWork1;
         private System.Windows.Forms.Button btnUseFiltrs;
-        private System.Windows.Forms.ComboBox cmBYear3;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cmBYear2;
         private System.Windows.Forms.Button btnCancelFilters;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnSaveToExel;
-        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
+        private System.Windows.Forms.Button loadExelBtn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem10;
     }
 }
 

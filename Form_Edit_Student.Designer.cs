@@ -64,7 +64,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(118, 22);
+            this.label3.Location = new System.Drawing.Point(12, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 13);
             this.label3.TabIndex = 15;
@@ -73,15 +73,15 @@
             // tBYearOld
             // 
             this.tBYearOld.Enabled = false;
-            this.tBYearOld.Location = new System.Drawing.Point(118, 38);
+            this.tBYearOld.Location = new System.Drawing.Point(12, 38);
             this.tBYearOld.Name = "tBYearOld";
-            this.tBYearOld.Size = new System.Drawing.Size(100, 20);
+            this.tBYearOld.Size = new System.Drawing.Size(150, 20);
             this.tBYearOld.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 22);
+            this.label2.Location = new System.Drawing.Point(168, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 13;
@@ -90,9 +90,9 @@
             // tBGroupOld
             // 
             this.tBGroupOld.Enabled = false;
-            this.tBGroupOld.Location = new System.Drawing.Point(12, 38);
+            this.tBGroupOld.Location = new System.Drawing.Point(168, 38);
             this.tBGroupOld.Name = "tBGroupOld";
-            this.tBGroupOld.Size = new System.Drawing.Size(100, 20);
+            this.tBGroupOld.Size = new System.Drawing.Size(150, 20);
             this.tBGroupOld.TabIndex = 12;
             // 
             // label1

@@ -29,7 +29,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <ApplicationVersion>1.0.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -71,6 +71,10 @@
   <PropertyGroup />
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Students.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -138,6 +142,30 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Add_Group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Add_Group.Designer.cs">
+      <DependentUpon>Form_Add_Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Add_Student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Add_Student.Designer.cs">
+      <DependentUpon>Form_Add_Student.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Add_Subject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Add_Subject.Designer.cs">
+      <DependentUpon>Form_Add_Subject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Add_Work.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Add_Work.Designer.cs">
+      <DependentUpon>Form_Add_Work.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Edit_Group.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +194,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Add_Group.resx">
+      <DependentUpon>Form_Add_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Add_Student.resx">
+      <DependentUpon>Form_Add_Student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Add_Subject.resx">
+      <DependentUpon>Form_Add_Subject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Add_Work.resx">
+      <DependentUpon>Form_Add_Work.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Edit_Group.resx">
       <DependentUpon>Form_Edit_Group.cs</DependentUpon>
@@ -199,6 +239,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Students.manifest" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

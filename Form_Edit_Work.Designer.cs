@@ -47,9 +47,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 74);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 36;
-            this.label5.Text = "Работа";
+            this.label5.Text = "Дисциплина";
             // 
             // tBWorkNew
             // 
@@ -116,9 +116,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 28;
-            this.label2.Text = "Предмет";
+            this.label2.Text = "Дисциплина";
             // 
             // tBSubjOld
             // 

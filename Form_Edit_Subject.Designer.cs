@@ -82,9 +82,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 74);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Предмет";
+            this.label5.Text = "Дисциплина";
             // 
             // tBSubjNew
             // 
@@ -115,9 +115,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Предмет";
+            this.label2.Text = "Дисциплина";
             // 
             // tBSubjOld
             // 
@@ -157,7 +157,7 @@
             this.MaximumSize = new System.Drawing.Size(370, 160);
             this.Name = "Form_Edit_Subject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Редактирование Предметов";
+            this.Text = "Редактирование Дисциплин";
             this.ResumeLayout(false);
             this.PerformLayout();
 
